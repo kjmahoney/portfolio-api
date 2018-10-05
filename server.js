@@ -1,16 +1,23 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const PORT = 4002;
+const dbConfig = require('./config/dbConfig.js');
+const mongoose = require('mongoose');
+const ejs = require('ejs');
 
 const app = express();
+
+app.engine('.html', ejs.__express);
+app.set("view engine", ".html")
+
+app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(bodyParser.json());
 
-
-const dbConfig = require('./config/dbConfig.js');
-const mongoose = require('mongoose');
+app.get('/', (req, res) => res.render('index', {}));
+// res.json("API for kevins projects");
 
 mongoose.Promise = global.Promise;
 
@@ -22,10 +29,6 @@ mongoose.connect(dbConfig.url, {
   console.log(`Error connecting to database: ${err}`);
   process.exit();
 })
-
-app.get('/', (req, res) => {
-  res.json("API for kevins projects");
-});
 
 
 require('./app/routes/project')(app);
