@@ -27,6 +27,8 @@ app.get('/', (req, res) => {
   res.json("API for kevins projects");
 });
 
+
+require('./app/routes/project')(app);
 app.listen(PORT, () => {
   console.log(`Listening on ${PORT}`);
 })
