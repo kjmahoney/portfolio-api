@@ -1,7 +1,7 @@
 const Project = require('../models/project')
 
 exports.create = (req, res) => {
-  console.log(req.body);
+  console.log('POSTING');
   if(!req.body.name) {
     return res.status(400).send({
       message: `project can't be empty`
@@ -9,7 +9,7 @@ exports.create = (req, res) => {
   }
 
   const project = new Project({
-    name: req.body.title,
+    name: req.body.name,
     description: req.body.description,
     url: req.body.url,
     github_url: req.body.github_url,
@@ -29,7 +29,9 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
     Project.find()
     .then(projects => {
-      res.send(projects);
+      console.log('whoopy');
+      console.log(projects);
+      res.render('index', { projects: projects });
     }).catch(err => {
       res.status(500).send({
         message: err.message

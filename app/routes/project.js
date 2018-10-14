@@ -1,9 +1,9 @@
 module.exports = (app) => {
   const projects = require('../controllers/projects');
 
-  app.post('/projects', projects.create);
-
   app.get('/projects', projects.findAll);
+
+  app.post('/projects', projects.create);
 
   app.get('/projects/:id', projects.findOne);
 

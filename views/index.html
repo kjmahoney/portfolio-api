@@ -1,1 +1,16 @@
 <p>YARRGH</p>
+
+<% for(var i=0; i < projects.length; i++) { %>
+  <p><%=projects[i].name %></p>
+<% } %>
+
+<%= projects %>
+
+<form class="" action="/projects" method="post">
+  <input type="text" name="name" value="name">
+  <input type="text" name="description" value="description">
+  <input type="text" name="url" value="url">
+  <input type="text" name="github_url" value="github url">
+  <input type="text" name="image" value="image">
+  <input type="submit" name="image" value="Submit">
+</form>

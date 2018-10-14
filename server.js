@@ -17,6 +17,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => res.render('index', {}));
+
+// app.get('/projects', (req, res) => {
+//   res.render('index', {project: "kevin"});
+// });
 // res.json("API for kevins projects");
 
 mongoose.Promise = global.Promise;
