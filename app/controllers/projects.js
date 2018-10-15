@@ -56,12 +56,12 @@ exports.findOne = (req, res) => {
 }
 
 exports.update = (req, res) => {
-  if(!req.body.content) {
+  if(!req.body.name) {
     return res.status(400).send({
-           message: "Project content can not be empty"
+           message: "Project name can not be empty"
       });
    }
-   Project.findByIdAndUpdate(req.params.Id, {
+   Project.findByIdAndUpdate(req.params.id, {
      name: req.body.title,
      description: req.body.description,
      url: req.body.url,
@@ -71,18 +71,18 @@ exports.update = (req, res) => {
    .then(project => {
      if(!project) {
       return res.status(404).send({
-        message: "Project not found with id " + req.params.Id
+        message: "Project not found with id: " + req.params.id
       });
     }
     res.send(project);
   }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Project not found with id " + req.params.Id
+                message: "Project not found with id " + req.params.id
             });
         }
         return res.status(500).send({
-            message: "Error updating project with id " + req.params.Id
+            message: "Error updating project with id " + req.params.id
         });
     });
 };

@@ -7,7 +7,7 @@ module.exports = (app) => {
 
   app.get('/projects/:id', projects.findOne);
 
-  app.put('/projects/:id', projects.update);
+  app.post('/projects/edit/:id', projects.update);
 
   app.post('/projects/delete/:id', projects.delete);
 }

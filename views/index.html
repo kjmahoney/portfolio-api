@@ -1,14 +1,22 @@
-<p>YARRGH</p>
+<h1>Kevin's Project CMS</h1>
 
+<h2>Projects</h2>
 <% for(var i=0; i < projects.length; i++) { %>
-  <p><%=projects[i].name %></p>
+  <form class="" action="/projects/edit/<%=projects[i].id%>" method="post">
+    <input type="text" name="name" value="<%=projects[i].name %>">
+    <input type="text" name="description" value="<%=projects[i].description %>">
+    <input type="text" name="url" value="<%=projects[i].url %>">
+    <input type="text" name="github_url" value="<%=projects[i].github_url %>">
+    <input type="text" name="image" value="<%=projects[i].image %>">
+    <p><%=projects[i].id %></p>
+    <input type="submit" name="edit" value="Submit Edit">
+  </form>
   <form class="" action="/projects/delete/<%=projects[i].id%>" method="post">
     <input type="submit" name="delete" value="Delete">
   </form>
 <% } %>
 
-<%= projects %>
-
+<h2>Add New</h2>
 <form class="" action="/projects" method="post">
   <input type="text" name="name" value="name">
   <input type="text" name="description" value="description">
@@ -16,8 +24,4 @@
   <input type="text" name="github_url" value="github url">
   <input type="text" name="image" value="image">
   <input type="submit" name="image" value="Submit">
-</form>
-
-<form class="" action="/projects" method="DELETE">
-  <input type="submit" name="image" value="Delete THIS">
 </form>
