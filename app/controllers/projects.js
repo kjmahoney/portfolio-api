@@ -28,8 +28,6 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
     Project.find()
     .then(projects => {
-      console.log('finding all');
-      console.log(projects);
       res.render('index', { projects: projects });
     }).catch(err => {
       res.status(500).send({
@@ -37,9 +35,8 @@ exports.findAll = (req, res) => {
       })
     })
 };
-
+//havent created a real view yet. But dont need at this point
 exports.findOne = (req, res) => {
-  console.log('FOUND IT' + req.params.id);
   Project.findById(req.params.id)
     .then(project => {
       if(!project) {
