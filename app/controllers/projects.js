@@ -1,7 +1,6 @@
 const Project = require('../models/project')
 
 exports.create = (req, res) => {
-  console.log('POSTING');
   if(!req.body.name) {
     return res.status(400).send({
       message: `project can't be empty`
@@ -29,7 +28,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
     Project.find()
     .then(projects => {
-      console.log('whoopy');
+      console.log('finding all');
       console.log(projects);
       res.render('index', { projects: projects });
     }).catch(err => {
@@ -40,7 +39,8 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-  Project.findById(req.params.Id)
+  console.log('FOUND IT' + req.params.id);
+  Project.findById(req.params.id)
     .then(project => {
       if(!project) {
         return res.status(404).send({
@@ -88,22 +88,23 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res) => {
-  Project.findByIdAndRemove(req.params.Id)
+  console.log('DELETING');
+  Project.findByIdAndRemove(req.params.id)
   .then(project => {
        if(!project) {
            return res.status(404).send({
-               message: "Project not found with id " + req.params.Id
+               message: "Project not found with id " + req.params.id
            });
        }
        res.send({message: "Project deleted successfully!"});
    }).catch(err => {
        if(err.kind === 'ObjectId' || err.name === 'NotFound') {
            return res.status(404).send({
-               message: "Project not found with id " + req.params.Id
+               message: "Project not found with id " + req.params.id
            });
        }
        return res.status(500).send({
-           message: "Could not delete project with id " + req.params.Id
+           message: "Could not delete project with id " + req.params.id
        });
    });
 };
