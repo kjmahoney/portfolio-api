@@ -25,7 +25,7 @@ app.get('/', (req, res) => res.render('index', {}));
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(dbConfig.url || dbConfig.deployUrl, {
+mongoose.connect(dbConfig.mongoLabUrl, {
   useNewUrlParser: true
 }).then(() => {
   console.log('Connected to database');
