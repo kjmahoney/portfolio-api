@@ -10,4 +10,7 @@ module.exports = (app) => {
   app.post('/projects/edit/:id', projects.update);
 
   app.post('/projects/delete/:id', projects.delete);
+
+  //API CALLS
+  app.get('/api/projects', projects.findAllAPI);
 }

@@ -25,6 +25,18 @@ exports.create = (req, res) => {
     })
 };
 
+exports.findAllAPI = (req, res) => {
+    Project.find()
+    .then(projects => {
+      console.log(projects);
+      res.json(projects);
+    }).catch(err => {
+      res.status(500).send({
+        message: err.message
+      })
+    })
+};
+
 exports.findAll = (req, res) => {
     Project.find()
     .then(projects => {

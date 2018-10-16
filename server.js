@@ -36,6 +36,6 @@ mongoose.connect(dbConfig.mongoLabUrl, {
 
 
 require('./app/routes/project')(app);
-app.listen(process.env.PORT || 8888, () => {
+app.listen(process.env.PORT || PORT, () => {
   console.log(`Listening on ${PORT}`);
 })
