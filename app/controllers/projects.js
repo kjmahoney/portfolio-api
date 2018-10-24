@@ -71,7 +71,7 @@ exports.update = (req, res) => {
       });
    }
    Project.findByIdAndUpdate(req.params.id, {
-     name: req.body.title,
+     name: req.body.name,
      description: req.body.description,
      url: req.body.url,
      github_url: req.body.github_url,
